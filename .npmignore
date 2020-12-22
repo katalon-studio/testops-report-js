@@ -8,5 +8,5 @@
 
 # for codes
 src/
-test/
+tests/
 testops-result/
