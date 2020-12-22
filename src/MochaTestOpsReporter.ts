@@ -16,55 +16,64 @@ const {
     EVENT_RUN_END
 } = Mocha.Runner.constants; // other constants https://mochajs.org/api/runner.js.html
 
-export = class MochaTestOpsReporter extends Mocha.reporters.Base{
-    private coreReporter: TestOpsReporter
+export = class MochaTestOpsReporter extends Mocha.reporters.Base {
+
+    private coreReporter: TestOpsReporter;
+
     constructor(runner: Mocha.Runner) {
-        // console.log('runner', runner)
         super(runner);
         this.coreReporter = new TestOpsReporter();
-        // console.log('coreReporter', this.coreReporter)
-
         this.runner
             .on("hook", this.onHookStart.bind(this))
             .on("hook end", this.onHookEnd.bind(this))
-            .on(EVENT_RUN_BEGIN, () => console.log('helolllll'))
-            .on(EVENT_SUITE_BEGIN, this.onSuite.bind(this))
-            .on(EVENT_TEST_BEGIN, this.onTest.bind(this))
-            .on(EVENT_TEST_PASS, this.onPassed.bind(this))
-            .on(EVENT_TEST_FAIL, this.onFailed.bind(this))
-            .on(EVENT_TEST_PENDING, this.onPending.bind(this))
-            .on(EVENT_RUN_END, () => console.log('end nef'))
-            .on(EVENT_SUITE_END, this.onSuiteEnd.bind(this))
+            .on(EVENT_RUN_BEGIN, this.onExecutionStart.bind(this))
+            .on(EVENT_RUN_END, this.onExecutionFinish.bind(this))
+            .on(EVENT_SUITE_BEGIN, this.onSuiteStart.bind(this))
+            .on(EVENT_SUITE_END, this.onSuiteFinish.bind(this))
+            .on(EVENT_TEST_BEGIN, this.onTestStart.bind(this))
+            .on(EVENT_TEST_PASS, this.onTestSuccess.bind(this))
+            .on(EVENT_TEST_FAIL, this.onTestFailure.bind(this))
+            .on(EVENT_TEST_PENDING, this.onTestPending.bind(this))
     }
 
-    private onSuite(suite: Mocha.Suite): void {
-        console.log('onSuite')
-        this.coreReporter.startSuite(suite.fullTitle());
+    private onExecutionStart(hook: Mocha.Hook): void {
+        console.log('onExecutionStart')
+        this.coreReporter.onExecutionStart();
     }
 
-    private onSuiteEnd(): void {
-        console.log('onSuiteEnd')
-        this.coreReporter.endSuite();
+    private onExecutionFinish(hook: Mocha.Hook): void {
+        console.log('onExecutionFinish')
+        this.coreReporter.onExecutionFinish();
     }
 
-    private onTest(test: Mocha.Test): void {
-        console.log('onTest')
-        this.coreReporter.startCase(test);
+    private onSuiteStart(suite: Mocha.Suite): void {
+        console.log('onSuiteStart')
+        this.coreReporter.onSuiteStart(suite);
     }
 
-    private onPassed(test: Mocha.Test): void {
-        console.log('onPassed')
-        this.coreReporter.passTestCase(test);
+    private onSuiteFinish(suite: Mocha.Suite): void {
+        console.log('onSuiteFinish')
+        this.coreReporter.onSuiteFinish(suite);
     }
 
-    private onFailed(test: Mocha.Test, error: Error): void {
-        console.log('onFailed')
-        this.coreReporter.failTestCase(test, error);
+    private onTestStart(test: Mocha.Test): void {
+        console.log('onTestStart')
+        this.coreReporter.onTestStart(test);
     }
 
-    private onPending(test: Mocha.Test): void {
-        console.log('onPending')
-        this.coreReporter.pendingTestCase(test);
+    private onTestSuccess(test: Mocha.Test): void {
+        console.log('onTestSuccess')
+        this.coreReporter.onTestSuccess(test);
+    }
+
+    private onTestFailure(test: Mocha.Test, error: Error): void {
+        console.log('onTestFailure')
+        this.coreReporter.onTestFailure(test, error);
+    }
+
+    private onTestPending(test: Mocha.Test): void {
+        console.log('onTestPending')
+        this.coreReporter.onTestPending(test);
     }
 
     private onHookStart(hook: Mocha.Hook): void {

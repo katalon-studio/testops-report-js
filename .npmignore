@@ -1,0 +1,12 @@
+# empty npmignore to ensure all required files (e.g., in the dist folder) are published by npm
+
+# for CI
+.github/
+
+# for IntelIJ
+*.iml
+
+# for codes
+src/
+test/
+testops-result/
