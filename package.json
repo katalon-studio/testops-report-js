@@ -1,7 +1,7 @@
 {
-  "name": "testops-mocha",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@katalon/testops-mocha",
+  "version": "0.0.1-beta.1",
+  "description": "TestOps Mocha",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -17,6 +17,11 @@
     "type": "git",
     "url": "https://github.com/katalon-studio/testops-mocha.git"
   },
+  "keywords": [
+    "axios",
+    "typescript",
+    "testops-mocha"
+  ],
   "dependencies": {
     "@katalon/testops-commons": "0.0.1-beta.12",
     "axios": "^0.21.0",
