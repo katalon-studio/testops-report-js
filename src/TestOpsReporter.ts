@@ -5,11 +5,8 @@ import {
     Status,
     ReportLifecycle,
     TestOpsConfiguration,
-    TestOpsReportGenerator,
-    ReportUploader
 } from '@katalon/testops-commons'
 import { v4 as uuidv4 } from 'uuid';
-import axios from 'axios';
 import Mocha from 'mocha'
 
 export class TestOpsReporter {
@@ -20,19 +17,14 @@ export class TestOpsReporter {
     private currentSuite: TestSuite | null = this.suites.length > 0 ? this.suites[this.suites.length - 1] : null;
 
     constructor() {
-        const axiosInstance = axios.create();
-
         const configurationParams: TestOpsConfiguration = {
             username: "lydoan@kms-technology.com",
             password: "Dtl#@1999",
             basePath: "http://localhost:8444",
             projectId: 3,
-            reportFolder: "./testops-result",
-            axiosInstance,
+            reportFolder: "./testops-result"
         };
-        const reportUploader = new ReportUploader(configurationParams);
-        const reportGenerator = new TestOpsReportGenerator(configurationParams);
-        this.report = new ReportLifecycle(reportGenerator, reportUploader);
+        this.report = new ReportLifecycle(configurationParams);
     }
 
     public createMetadata(): Metadata {
@@ -45,7 +37,7 @@ export class TestOpsReporter {
 
     public onExecutionStart(): void {
         this.report.startExecution();
-        const metadata: Metadata = this.createMetadata()
+        const metadata: Metadata = this.createMetadata();
         this.report.writeMetadata(metadata);
     }
 
@@ -64,7 +56,7 @@ export class TestOpsReporter {
           suite.TO_UUID = suiteId;
           this.currentSuite = {} as TestSuite;
           this.currentSuite.name = suiteName;
-          this.report.startSuite(this.currentSuite, suiteId);
+          this.report.startSuite(this.currentSuite);
           this.pushSuite(this.currentSuite);
         }
     }
@@ -129,7 +121,7 @@ export class TestOpsReporter {
         }
         this.currentTest.stop = stop;
         this.currentTest.duration = this.currentTest.stop - this.currentTest.start;
-        this.report.stopTestCase(this.currentTest)
+        this.report.stopTestCase(this.currentTest);
         this.currentTest = null;
     }
 }
