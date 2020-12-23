@@ -4,8 +4,6 @@ import { TestOpsReporter } from "./TestOpsReporter";
 
 import Mocha from 'mocha'
 const {
-    EVENT_HOOK_BEGIN,
-    EVENT_HOOK_END,
     EVENT_SUITE_BEGIN,
     EVENT_SUITE_END,
     EVENT_TEST_BEGIN,
@@ -24,8 +22,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         super(runner);
         this.coreReporter = new TestOpsReporter();
         this.runner
-            .on("hook", this.onHookStart.bind(this))
-            .on("hook end", this.onHookEnd.bind(this))
             .on(EVENT_RUN_BEGIN, this.onExecutionStart.bind(this))
             .on(EVENT_RUN_END, this.onExecutionFinish.bind(this))
             .on(EVENT_SUITE_BEGIN, this.onSuiteStart.bind(this))
@@ -74,15 +70,5 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     private onTestPending(test: Mocha.Test): void {
         console.log('onTestPending')
         this.coreReporter.onTestPending(test);
-    }
-
-    private onHookStart(hook: Mocha.Hook): void {
-        console.log('onHookStart')
-        this.coreReporter.startHook(hook.title);
-    }
-
-    private onHookEnd(hook: Mocha.Hook): void {
-        console.log('onHookEnd')
-        this.coreReporter.endHook(hook.error());
     }
 }

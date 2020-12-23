@@ -2,16 +2,21 @@
   "name": "package.json",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "prepublish": "npm run build",
     "pretest": "npm run build",
-    "test": "mocha dist --recursive --reporter ./dist/MochaTestOpsReporter.js --reporter-options mochaFile=./reports/junit.xml './tests/sum.test.js'"
+    "test": "mocha dist --recursive --reporter ./dist/MochaTestOpsReporter.js './tests/sum.test.js'"
   },
-  "author": "",
+  "author": "Katalon, LLC. (https://www.katalon.com)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katalon-studio/testops-mocha.git"
+  },
   "dependencies": {
     "@katalon/testops-commons": "0.0.1-beta.11",
     "axios": "^0.21.0",
@@ -23,7 +28,6 @@
     "@types/mocha": "^8.2.0",
     "@types/uuid": "^8.3.0",
     "mocha": "^8.2.1",
-    "mocha-junit-reporter": "^2.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   }

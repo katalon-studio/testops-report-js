@@ -1,7 +1,6 @@
 import {
     TestResult,
     TestSuite,
-    Execution,
     Metadata,
     Status,
     ReportLifecycle,
@@ -10,15 +9,13 @@ import {
     ReportUploader
 } from '@katalon/testops-commons'
 import { v4 as uuidv4 } from 'uuid';
-import axios from "axios";
+import axios from 'axios';
 import Mocha from 'mocha'
 
 export class TestOpsReporter {
 
     private suites: TestSuite[] = [];
-    private results: TestResult[] = [];
     private currentTest: TestResult | null = null;
-    private currentExecution: Execution | null = null;
     private report: ReportLifecycle;
     private currentSuite: TestSuite | null = this.suites.length > 0 ? this.suites[this.suites.length - 1] : null;
 
@@ -26,10 +23,10 @@ export class TestOpsReporter {
         const axiosInstance = axios.create();
 
         const configurationParams: TestOpsConfiguration = {
-            username: "anhle@mailinator.com",
-            password: "12345678",
+            username: "lydoan@kms-technology.com",
+            password: "Dtl#@1999",
             basePath: "http://localhost:8444",
-            projectId: 241,
+            projectId: 3,
             reportFolder: "./testops-result",
             axiosInstance,
         };
@@ -53,17 +50,16 @@ export class TestOpsReporter {
     }
 
     public onExecutionFinish(): void {
+        this.report.stopExecution();
         this.report.writeTestResultsReport();
         this.report.writeTestSuitesReport();
-        this.report.stopExecution();
         this.report.writeExecutionReport();
-        // this.report.upload();
+        this.report.upload();
     }
 
     public onSuiteStart(suite: any): void {
         const suiteName = suite.fullTitle();
         if (suiteName) {
-          console.log('SuiteName: ', suiteName);
           const suiteId: string = uuidv4();
           suite.TO_UUID = suiteId;
           this.currentSuite = {} as TestSuite;
@@ -120,19 +116,6 @@ export class TestOpsReporter {
         this.suites.push(suite);
     }
 
-    public startHook(title: string): void {
-        // const suite: TestSuite | null = this.currentSuite;
-        // console.log("Execution name: ", title);
-    }
-
-    public endHook(error?: Error): void {
-        // console.log('End hook: ', error)
-        // this.report.writeTestResultsReport()
-        // this.report.writeExecutionReport();
-        // this.report.writeTestSuitesReport()
-        // this.report.stopExecution();
-    }
-
     private endTest(status: Status, error?: string, stackTrace?: string, stop: number = Date.now()): void {
         if (this.currentTest === null) {
             throw new Error("endTest while no test is running");
@@ -145,10 +128,8 @@ export class TestOpsReporter {
             this.currentTest.stackTrace = stackTrace;
         }
         this.currentTest.stop = stop;
-
-        console.log('Test result: ', this.currentTest);
+        this.currentTest.duration = this.currentTest.stop - this.currentTest.start;
         this.report.stopTestCase(this.currentTest)
         this.currentTest = null;
     }
-
 }
