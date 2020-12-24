@@ -6,9 +6,9 @@
     "bootstrap": "lerna bootstrap --hoist",
     "build": "npm run link && lerna run build --stream",
     "test": "npm run build && lerna run test --stream",
-    "aaa": "lerna version --no-git-tag-version --yes",
+    "aaa": "lerna version --yes",
     "bbb": "lerna publish from-package --no-git-reset --yes",
-    "ccc-beta": "lerna publish from-package --no-git-reset --no-git-tag-version --yes --dist-tag beta"
+    "ccc-beta": "lerna publish from-package --no-git-reset --yes --dist-tag beta"
   },
   "devDependencies": {
     "@tsconfig/node10": "^1.0.7",
