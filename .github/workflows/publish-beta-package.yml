@@ -29,6 +29,7 @@ jobs:
 
       - name: Install, build
         run: |
+          set -x
           npm install
           npm run bootstrap
           npm run build
@@ -43,5 +44,6 @@ jobs:
           git config --local user.name ${{ secrets.GITHUB_TOKEN }}
           npm install -g npm-cli-login
           npm-cli-login
+          npm status
           npm run version prerelease
           npm run publish-beta
