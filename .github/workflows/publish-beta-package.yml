@@ -31,8 +31,8 @@ jobs:
         run: |
           set -x
           npm install
-#          npm run bootstrap
-#          npm run build
+          npm run bootstrap
+          npm run build
           
       - name: Publish npm package
         env:
@@ -45,11 +45,4 @@ jobs:
           npm install -g npm-cli-login
           npm-cli-login
           npm run version prerelease
-          npm install
-          npm run bootstrap
-          npm run build
-          git status
-          cat packages/testops-jasmine/package.json
-          cat packages/testops-mocha/package.json
-          sleep 5
           npm run publish-beta
