@@ -6,7 +6,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "build": "npm run link && lerna run build --stream",
     "test": "npm run build && lerna run test --stream",
-    "version": "lerna version --no-push"
+    "version": "lerna version --no-push --yes"
   },
   "devDependencies": {
     "@tsconfig/node10": "^1.0.7",
