@@ -1,0 +1,33 @@
+{
+  "name": "@katalon/testops-mocha",
+  "version": "0.0.1-beta.3",
+  "description": "TestOps Mocha",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublish": "npm run build",
+    "pretest": "npm run build",
+    "test": "mocha dist --recursive --reporter ./dist/MochaTestOpsReporter.js './tests/sum.test.js'"
+  },
+  "author": "Katalon, LLC. (https://www.katalon.com)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katalon-studio/testops-mocha.git"
+  },
+  "keywords": [
+    "axios",
+    "typescript",
+    "testops-mocha"
+  ],
+  "dependencies": {
+    "axios": "^0.21.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^8.2.0",
+    "mocha": "^8.2.1"
+  }
+}
