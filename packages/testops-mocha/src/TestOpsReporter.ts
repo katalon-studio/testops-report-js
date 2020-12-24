@@ -15,10 +15,10 @@ export class TestOpsReporter {
 
     constructor() {
         const configurationParams: TestOpsConfiguration = {
-            username: "quile@kms-technology.com",
-            password: "12345678",
-            basePath: "http://localhost:8443",
-            projectId: 5,
+            username: "lydoan@kms-technology.com",
+            password: "Dtl#@1999",
+            basePath: "http://localhost:8444",
+            projectId: 3,
             reportFolder: "./testops-result"
         };
         this.report = new ReportLifecycle(configurationParams);
@@ -61,7 +61,7 @@ export class TestOpsReporter {
 
     public onSuiteFinish(suite: any): void {
         if (suite.TO_UUID) {
-          this.report.stopTestSuite(suite.TO_UUID);
+            this.report.stopTestSuite(suite.TO_UUID);
         }
     }
 
