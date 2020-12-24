@@ -49,17 +49,19 @@ export class TestOpsReporter {
     public onSuiteStart(suite: any): void {
         const suiteName = suite.fullTitle();
         if (suiteName) {
-          const suiteId: string = uuidv4();
-          suite.TO_UUID = suiteId;
-          const currentSuite = {} as TestSuite;
-          currentSuite.name = suiteName;
-          this.report.startSuite(currentSuite);
+            const suiteId: string = uuidv4();
+            suite.TO_UUID = suiteId;
+
+            const currentSuite = {} as TestSuite;
+            currentSuite.uuid = suiteId;
+            currentSuite.name = suiteName;
+            this.report.startSuite(currentSuite);
         }
     }
 
     public onSuiteFinish(suite: any): void {
         if (suite.TO_UUID) {
-          this.report.stopTestSuite(suite.TO_UUID)
+          this.report.stopTestSuite(suite.TO_UUID);
         }
     }
 
