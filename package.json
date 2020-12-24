@@ -6,7 +6,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "build": "npm run link && lerna run build --stream",
     "test": "npm run build && lerna run test --stream",
-    "prerelease:beta": "lerna version --yes",
+    "prerelease:beta": "lerna version --yes prerelease",
     "release:beta": "lerna publish from-package --no-git-reset --yes --dist-tag beta",
     "release": "lerna publish from-package --no-git-reset --yes",
   },
