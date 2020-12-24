@@ -1,14 +1,14 @@
 {
-  "name": "@katalon/testops-mocha",
+  "name": "@katalon/testops-jasmine",
   "version": "0.0.1-beta.6",
-  "description": "TestOps Mocha",
+  "description": "TestOps Jasmine",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "pretest": "npm run build",
-    "test": "mocha dist --recursive --reporter ./dist/MochaTestOpsReporter.js './tests/sum.test.js'"
+    "test": "jasmine ./dist/test/*.js"
   },
   "author": "Katalon, LLC. (https://www.katalon.com)",
   "license": "SEE LICENSE IN https://github.com/katalon-studio/utils/blob/master/LICENSE",
@@ -17,17 +17,13 @@
     "url": "https://github.com/katalon-studio/testops-report-js"
   },
   "keywords": [
-    "axios",
     "typescript",
-    "testops-mocha"
+    "jasmine",
+    "testops-jasmine"
   ],
-  "dependencies": {
-    "axios": "^0.21.0",
-    "uuid": "^8.3.2"
-  },
   "devDependencies": {
-    "@types/mocha": "^8.2.0",
-    "mocha": "^8.2.1"
+    "@types/jasmine": "^3.6.2",
+    "jasmine": "^3.6.3"
   },
   "publishConfig": {
     "access": "public"
