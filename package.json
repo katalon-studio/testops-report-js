@@ -8,7 +8,7 @@
     "test": "npm run build && lerna run test --stream",
     "prerelease:beta": "lerna version --yes prerelease",
     "release:beta": "lerna publish from-package --no-git-reset --yes --dist-tag beta",
-    "release": "lerna publish from-package --no-git-reset --yes",
+    "release": "lerna publish from-package --no-git-reset --yes"
   },
   "devDependencies": {
     "@tsconfig/node10": "^1.0.7",
