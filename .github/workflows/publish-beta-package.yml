@@ -44,6 +44,5 @@ jobs:
           git config --local user.name ${{ secrets.GITHUB_TOKEN }}
           npm install -g npm-cli-login
           npm-cli-login
-          git status
           npm run version prerelease
-          npm run publish-beta
+#          npm run publish-beta
