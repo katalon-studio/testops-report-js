@@ -46,5 +46,7 @@ jobs:
           npm-cli-login
           npm run version prerelease
           git status
+          cat packages/testops-jasmine/package.json
+          cat packages/testops-mocha/package.json
           sleep 5
           npm run publish-beta
