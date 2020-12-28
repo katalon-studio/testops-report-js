@@ -38,7 +38,6 @@ export class TestOpsReporter {
     }
 
     public onSuiteStart(suite: any): void {
-        console.log(suite);
         const suiteName = suite.fullTitle();
         if (suiteName) {
             const suiteId: string = uuidv4();

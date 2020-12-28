@@ -14,8 +14,11 @@
     "extends": "@tsconfig/node10/tsconfig.json",
     "include": [
         "./src/**/*",
-        "./tests/**/*",
         "index.ts",
         "./types.d.ts"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules"
     ]
 }
