@@ -1,2 +1,2 @@
 import MochaTestOpsReporter from './MochaTestOpsReporter'
- = MochaTestOpsReporter
+export = MochaTestOpsReporter
