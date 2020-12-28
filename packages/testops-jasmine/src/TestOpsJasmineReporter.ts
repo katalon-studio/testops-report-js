@@ -45,18 +45,14 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
     const currentSuite = this.getCurrentTestSuite();
     testResult.suiteName = currentSuite.name;
     testResult.parentUuid = currentSuite.uuid;
-    switch (spec.status) {
-      case SpecStatus.PENDING:
-      case SpecStatus.DISABLED:
-      case SpecStatus.EXCLUDED:
-        testResult.status = Status.SKIPPED;
-        break;
-      case SpecStatus.PASSED:
-        testResult.status = Status.PASSED;
-      case SpecStatus.FAILED:
-        testResult.status = Status.FAILED;
-      case SpecStatus.BROKEN:
-        testResult.status = Status.ERROR;
+
+    const { status: specStatus, failedExpectations } = spec;
+    testResult.status = this.convertToTestOpsStatus(specStatus);
+
+    if (failedExpectations && failedExpectations.length > 0) {
+      const expectation = failedExpectations[failedExpectations.length - 1];
+      testResult.errorMessage = expectation.message;
+      testResult.stackTrace = expectation.stack;
     }
     this.reportLifeCycle.stopTestCase(testResult);
     this.runningTest = null;
@@ -68,6 +64,27 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
       this.reportLifeCycle.stopTestSuite(currentSuite.uuid);
     }
     this.testSuites.pop();
+  }
+
+  private convertToTestOpsStatus(specStatus?: string): Status {
+    switch (specStatus) {
+      case SpecStatus.PASSED:
+        return Status.PASSED;
+
+      case SpecStatus.FAILED:
+        return Status.FAILED;
+
+      case SpecStatus.BROKEN:
+        return Status.ERROR;
+
+      case SpecStatus.PENDING:
+      case SpecStatus.DISABLED:
+      case SpecStatus.EXCLUDED:
+        return Status.SKIPPED;
+
+      default:
+        return Status.INCOMPLETE;
+    }
   }
 
   private getCurrentTestSuite(): TestSuite {
