@@ -23,7 +23,8 @@
   ],
   "dependencies": {
     "axios": "^0.21.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "@katalon/testops-commons": "0.0.1-beta.12"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.0",
