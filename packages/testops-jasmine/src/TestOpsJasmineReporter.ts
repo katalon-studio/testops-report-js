@@ -5,6 +5,7 @@ import {
   ReportLifecycle,
   TestOpsConfiguration,
   Metadata,
+  TestResult,
 } from "@katalon/testops-commons";
 
 enum SpecStatus {
@@ -19,6 +20,7 @@ enum SpecStatus {
 export class TestOpsJasmineReporter implements jasmine.CustomReporter {
   reportLifeCycle: ReportLifecycle;
   private testSuites: TestSuite[] = [];
+  private runningTest: TestResult | null = null;
 
   constructor(config: TestOpsConfiguration) {
     this.reportLifeCycle = new ReportLifecycle(config);
@@ -33,14 +35,16 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
     this.testSuites.push(this.reportLifeCycle.startSuite(testSuite));
   }
 
-  specStarted(spec: jasmine.CustomReporterResult): void {}
+  specStarted(spec: jasmine.CustomReporterResult): void {
+    const testResult = TestCreator.testResult(spec.fullName);
+    this.runningTest = this.reportLifeCycle.startTestCase(testResult);
+  }
 
   specDone(spec: jasmine.CustomReporterResult): void {
-    const testResult = TestCreator.testResult(spec.fullName);
+    const testResult = this.getRunningTest();
     const currentSuite = this.getCurrentTestSuite();
-    testResult.suiteName = currentSuite?.name;
-    testResult.parentUuid = currentSuite?.uuid;
-    testResult.duration = 0;
+    testResult.suiteName = currentSuite.name;
+    testResult.parentUuid = currentSuite.uuid;
     switch (spec.status) {
       case SpecStatus.PENDING:
       case SpecStatus.DISABLED:
@@ -55,6 +59,7 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
         testResult.status = Status.ERROR;
     }
     this.reportLifeCycle.stopTestCase(testResult);
+    this.runningTest = null;
   }
 
   suiteDone(suite: jasmine.CustomReporterResult): void {
@@ -65,16 +70,21 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
     this.testSuites.pop();
   }
 
-  private getCurrentTestSuite(): TestSuite | null {
+  private getCurrentTestSuite(): TestSuite {
     const length = this.testSuites.length;
-    if (length === 0) return null;
+    if (length === 0) throw new Error("No active test suite");
     return this.testSuites[length - 1];
+  }
+
+  private getRunningTest(): TestResult {
+    if (this.runningTest === null) throw new Error("No running test");
+    return this.runningTest;
   }
 
   private get metadata(): Metadata {
     return {
       framework: "jasmine",
-      language: "javaScript",
+      language: "javascript",
     };
   }
 
