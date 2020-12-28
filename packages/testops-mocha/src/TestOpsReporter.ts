@@ -14,18 +14,28 @@ export class TestOpsReporter {
     private report: ReportLifecycle;
 
     constructor() {
-        const config: TestOpsConfiguration = {
+        const configurationParams: TestOpsConfiguration = {
             username: "lydoan@kms-technology.com",
             password: "Dtl#@1999",
             basePath: "http://localhost:8444",
             projectId: 3,
             reportFolder: "./testops-result"
         };
-        this.report = new ReportLifecycle(config);
+        this.report = new ReportLifecycle(configurationParams);
+    }
+
+    public createMetadata(): Metadata {
+        const metadata = {
+          framework: "mocha",
+          language: "js"
+        }
+        return metadata
     }
 
     public onExecutionStart(): void {
         this.report.startExecution();
+        const metadata: Metadata = this.createMetadata();
+        this.report.writeMetadata(metadata);
     }
 
     public onExecutionFinish(): void {
@@ -33,7 +43,6 @@ export class TestOpsReporter {
         this.report.writeTestResultsReport();
         this.report.writeTestSuitesReport();
         this.report.writeExecutionReport();
-        this.report.writeMetadata(this.metadata);
         this.report.upload();
     }
 
@@ -77,7 +86,7 @@ export class TestOpsReporter {
         this.endTest(result, Status.SKIPPED);
     }
 
-    private createTestResult(test: any): TestResult {
+    public createTestResult(test: any): TestResult {
         const suite: any = test.parent;
         const result = { } as TestResult;
         result.name = test.title;
@@ -93,12 +102,5 @@ export class TestOpsReporter {
         result.stop = Date.now();
         result.duration = result.stop - result.start;
         this.report.stopTestCase(result);
-    }
-
-    private get metadata(): Metadata {
-      return {
-        framework: "mocha",
-        language: "javaScript",
-      };
     }
 }

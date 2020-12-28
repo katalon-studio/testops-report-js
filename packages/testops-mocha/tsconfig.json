@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "rootDir": ".",
-        "outDir": "dist",
+        "rootDir": "./src",
+        "outDir": "./dist",
 
         // Include source maps for Jest
         "declaration": true,
@@ -14,7 +14,6 @@
     "extends": "@tsconfig/node10/tsconfig.json",
     "include": [
         "./src/**/*",
-        "index.ts",
         "./types.d.ts"
     ],
     "exclude": [
