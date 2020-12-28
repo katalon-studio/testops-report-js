@@ -14,7 +14,7 @@ const {
     EVENT_RUN_END
 } = Mocha.Runner.constants; // other constants https://mochajs.org/api/runner.js.html
 
-export = class MochaTestOpsReporter extends Mocha.reporters.Base {
+export class MochaTestOpsReporter extends Mocha.reporters.Base {
 
     private coreReporter: TestOpsReporter;
 
