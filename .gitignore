@@ -7,3 +7,4 @@ testops-result/
 
 #ignore top level package.json
 /package-lock.json
+*.iml
