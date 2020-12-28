@@ -1,6 +1,6 @@
 {
   "name": "@katalon/testops-jasmine",
-  "version": "0.0.1-beta.16",
+  "version": "0.0.1-beta.21",
   "description": "TestOps Jasmine",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,6 +21,9 @@
     "jasmine",
     "testops-jasmine"
   ],
+  "dependencies": {
+    "@katalon/testops-commons": "0.0.1-beta.12"
+  },
   "devDependencies": {
     "@types/jasmine": "^3.6.2",
     "jasmine": "^3.6.3"

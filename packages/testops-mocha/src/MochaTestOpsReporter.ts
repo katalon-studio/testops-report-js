@@ -36,7 +36,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onExecutionStart')
         try {
             this.coreReporter.onExecutionStart();
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -45,7 +45,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onExecutionFinish')
         try {
             this.coreReporter.onExecutionFinish();
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -54,7 +54,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onSuiteStart')
         try {
             this.coreReporter.onSuiteStart(suite);
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -63,7 +63,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onSuiteFinish')
         try {
             this.coreReporter.onSuiteFinish(suite);
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -72,7 +72,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onTestStart')
         try {
             this.coreReporter.onTestStart(test);
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -81,7 +81,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onTestSuccess')
         try {
             this.coreReporter.onTestSuccess(test);
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -90,7 +90,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onTestFailure')
         try {
             this.coreReporter.onTestFailure(test, error);
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -99,7 +99,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         console.log('onTestPending')
         try {
             this.coreReporter.onTestPending(test);
-        }catch (err) {
+        } catch (err) {
             console.log(err)
         }
     }
