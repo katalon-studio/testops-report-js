@@ -1,1 +1,2 @@
-export { TestOpsJasmineReporter } from './src/TestOpsJasmineReporter';
+import { TestOpsJasmineReporter } from "./src/TestOpsJasmineReporter";
+export = TestOpsJasmineReporter;
