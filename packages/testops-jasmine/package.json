@@ -21,6 +21,9 @@
     "jasmine",
     "testops-jasmine"
   ],
+  "dependencies": {
+    "@katalon/testops-commons": "0.0.1-beta.12"
+  },
   "devDependencies": {
     "@types/jasmine": "^3.6.2",
     "jasmine": "^3.6.3"
