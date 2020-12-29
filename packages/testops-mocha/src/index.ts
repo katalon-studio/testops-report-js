@@ -1,2 +1,4 @@
 import MochaTestOpsReporter from './MochaTestOpsReporter'
-export = MochaTestOpsReporter
+import { CypressTestOpsReporter } from './CypressTestOpsReporter';
+
+export = { MochaTestOpsReporter, CypressTestOpsReporter }
