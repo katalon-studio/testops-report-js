@@ -75,6 +75,9 @@ export class TestOpsJestReporter
     return {
       framework: METADATA_FRAMEWORK,
       language: METADATA_LANGUAGE,
+      reportFolder: this.options.reportFolder,
+      buildLabel: this.options.buildLabel,
+      buildUrl: this.options.buildUrl,
     };
   }
 
