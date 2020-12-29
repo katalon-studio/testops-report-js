@@ -5,6 +5,7 @@ import {
   Metadata,
   Execution,
   TestSuite,
+  TestResult,
 } from "@katalon/testops-commons";
 import {
   Reporter,
@@ -14,14 +15,16 @@ import {
 } from "@jest/reporters";
 import {
   AggregatedResult,
-  TestCaseResult,
-  TestResult,
+  TestResult as JestTestResult,
 } from "@jest/test-result";
+import stripAnsi from "strip-ansi";
 import { AssertionResult } from "@jest/types/build/TestResult";
 
+const METADATA_FRAMEWORK: string = "jest";
+const METADATA_LANGUAGE: string = "javascript";
+
 export class TestOpsJestReporter
-  implements
-    Pick<Reporter, "onRunComplete" | "onTestResult" | "onTestCaseResult"> {
+  implements Pick<Reporter, "onRunComplete" | "onTestResult" | "onRunStart"> {
   private globalConfig;
   private options;
   private currentExecution: Execution | null = null;
@@ -38,36 +41,17 @@ export class TestOpsJestReporter
     this.currentExecution = this.reportLifecycle.startExecution(execution);
   }
 
-  onTestFileStart(test: Test) {
-    console.log("test file start");
-  }
-
-  onTestStart(test: Test) {
-    console.log("test start ");
-  }
-
-  onTestCaseResult(test: Test, testCaseResult: TestCaseResult) {
-    console.log("Test case result");
-    // console.log(test);
-    // console.log(testCaseResult);
-  }
-
   onTestResult(
     test: Test,
-    testResult: TestResult,
+    testResult: JestTestResult,
     aggregatedResult: AggregatedResult
   ) {
-    const { testResults = [], perfStats } = testResult;
+    const { testResults = [] } = testResult;
     if (testResults.length > 0) {
-      const ancestorTitle = testResults[0].ancestorTitles[0];
-      const suiteName = ancestorTitle || "No name";
-      const testSuite = TestCreator.testSuite(suiteName);
-      testSuite.start = perfStats.start;
-      testSuite.stop = perfStats.end;
-      testSuite.duration = perfStats.runtime;
+      const testSuite = this.buildTestSuite(testResult);
       this.reportLifecycle.startSuite(testSuite);
       testResults.forEach((testResult) => {
-        const testOpsResult = this.convertTestResult(testResult, testSuite);
+        const testOpsResult = this.buildTestResult(testResult, testSuite);
         this.reportLifecycle.stopTestCase(testOpsResult);
       });
       this.reportLifecycle.stopTestSuite(testSuite);
@@ -83,50 +67,60 @@ export class TestOpsJestReporter
     this.reportLifecycle.writeTestResultsReport();
     this.reportLifecycle.writeTestSuitesReport();
     this.reportLifecycle.writeExecutionReport();
-    this.reportLifecycle.writeMetadata(this.getMetadata());
+    this.reportLifecycle.writeMetadata(this.metaData);
     this.reportLifecycle.upload();
   }
 
-  private getMetadata(): Metadata {
+  private get metaData(): Metadata {
     return {
-      framework: "jest",
-      language: "javascript",
+      framework: METADATA_FRAMEWORK,
+      language: METADATA_LANGUAGE,
     };
   }
 
-  private convertTestResult(testResult: AssertionResult, testSuite: TestSuite) {
-    const { fullName, duration, status } = testResult;
+  private buildTestResult(
+    testResult: AssertionResult,
+    testSuite: TestSuite
+  ): TestResult {
+    const { fullName, duration, status, failureMessages } = testResult;
     const testOpsResult = TestCreator.testResult(fullName);
     testOpsResult.duration = duration || 0;
     testOpsResult.status = this.convertStatus(status);
     testOpsResult.parentUuid = testSuite.uuid;
     testOpsResult.suiteName = testSuite.name;
-    
+    if (failureMessages) {
+      const noColorMessage = failureMessages.map((m) => stripAnsi(m));
+      testOpsResult.stackTrace = noColorMessage.join("\r\n");
+    }
     //test result does not have start stop, so we take it from test suite
     testOpsResult.start = testSuite.start;
     testOpsResult.stop = testSuite.start + testOpsResult.duration;
     return testOpsResult;
   }
 
-  // private buildTestSuite(testResult: TestResult): TestSuite {
-  // }
+  private buildTestSuite(testResult: JestTestResult): TestSuite {
+    const { testResults = [], perfStats } = testResult;
+    const ancestorTitle = testResults[0].ancestorTitles[0];
+    const suiteName = ancestorTitle || "No name";
+    const testSuite = TestCreator.testSuite(suiteName);
+    testSuite.start = perfStats.start;
+    testSuite.stop = perfStats.end;
+    testSuite.duration = perfStats.runtime;
+    return testSuite;
+  }
 
   private convertStatus(status: string) {
     switch (status) {
       case "passed":
         return Status.PASSED;
-      case "faile":
+      case "failed":
         return Status.FAILED;
-      case "error":
-        return Status.ERROR;
       case "pending":
       case "skipped":
       case "disabled":
-        return Status.SKIPPED;
       case "todo":
-        return Status.INCOMPLETE;
       default:
-        return Status.INCOMPLETE;
+        return Status.SKIPPED;
     }
   }
 }

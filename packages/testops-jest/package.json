@@ -8,7 +8,7 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "pretest": "npm run build",
-    "test": "jest dist/test --testRunner='jest-circus/runner'"
+    "test": "jest dist/test"
   },
   "author": "Katalon, LLC. (https://www.katalon.com)",
   "license": "SEE LICENSE IN https://github.com/katalon-studio/utils/blob/master/LICENSE",
@@ -23,13 +23,12 @@
     "testops-jest"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "0.0.1-beta.16"
+    "@katalon/testops-commons": "0.0.1-beta.16",
+    "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
     "@jest/reporters": "^26.6.2",
     "@jest/test-result": "^26.6.2",
-    "@types/jasmine": "^3.6.2",
-    "jasmine": "^3.6.3",
     "jest": "^26.6.3",
     "jest-circus": "^26.6.3"
   },

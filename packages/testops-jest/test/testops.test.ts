@@ -1,17 +1,34 @@
+import { describe, expect, it } from "@jest/globals";
+
 describe("TestOps reports", () => {
-  it("should passed", () => {
-    expect(true).toBe(true);
+  it("should failed", () => {
+    expect(false).toBe(true);
+    expect(1).toBe(2);
   });
 
-  it("should passed too", () => {
-    expect(true).toBe(true);
+  it("should throw exception", () => {
+    throw new Error("something wrong");
   });
+
+  it.skip("should skipped", () => {
+    console.log("it should not run");
+  });
+
+  it.each([
+    [1, 1, 2],
+    [1, 2, 3],
+    [2, 1, 4],
+  ])("add(%i, %i)", (a, b, expected) => {
+    expect(a + b).toBe(expected);
+  });
+
+  it.todo("todo test");
 
   describe("Nested describe", () => {
-    it("test should run", () => {
+    it("it should run", () => {
       expect(true).toBe(true);
     });
-  })
+  });
 });
 
 describe("TestOps result", () => {
