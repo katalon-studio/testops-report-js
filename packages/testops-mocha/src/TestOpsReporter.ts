@@ -29,7 +29,7 @@ export class TestOpsReporter {
     public createMetadata(): Metadata {
         const metadata = {
           framework: "mocha",
-          language: "js"
+          language: "javascript"
         }
         return metadata
     }
