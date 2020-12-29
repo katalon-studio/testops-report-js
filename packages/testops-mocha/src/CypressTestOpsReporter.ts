@@ -4,15 +4,8 @@ import {v4 as uuidv4} from 'uuid';
 export class CypressTestOpsReporter {
     private report: ReportLifecycle;
 
-    constructor() {
-        const configurationParams: TestOpsConfiguration = {
-            username: "lydoan@kms-technology.com",
-            password: "Dtl#@1999",
-            basePath: "http://localhost:8444",
-            projectId: 3,
-            reportFolder: "./testops-result"
-        };
-        this.report = new ReportLifecycle(configurationParams);
+    constructor(config: TestOpsConfiguration) {
+        this.report = new ReportLifecycle(config);
     }
 
     public createTestResult(test: any): TestResult {
