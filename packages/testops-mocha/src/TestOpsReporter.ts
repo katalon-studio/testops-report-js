@@ -47,7 +47,7 @@ export class TestOpsReporter {
     }
 
     public onSuiteStart(suite: any): void {
-        const suiteName = suite.fullTitle();
+        const suiteName = suite.title;
         if (suiteName) {
             const suiteId: string = uuidv4();
             suite.TO_UUID = suiteId;
@@ -89,11 +89,11 @@ export class TestOpsReporter {
     public createTestResult(test: any): TestResult {
         const suite: any = test.parent;
         const result = { } as TestResult;
-        result.name = test.title;
+        result.name = `${suite.title}.${test.title}`;
         result.uuid = uuidv4();
         result.start = test.TO_START;
         result.duration = test.duration;
-        result.suiteName = suite.fullTitle();
+        result.suiteName = suite.title;
         return result;
     }
 

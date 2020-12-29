@@ -75,8 +75,8 @@ export class CypressTestOpsReporter {
 
     public createMetadata(): Metadata {
         const metadata = {
-            framework: "mocha",
-            language: "js"
+            framework: "cypress",
+            language: "javascript"
         }
         return metadata
     }
