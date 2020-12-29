@@ -86,7 +86,7 @@ export class CypressTestOpsReporter {
 
             this.onExecutionFinish(execution);
         }catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 

@@ -37,7 +37,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onExecutionStart();
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -46,7 +46,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onExecutionFinish();
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -55,7 +55,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onSuiteStart(suite);
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -64,7 +64,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onSuiteFinish(suite);
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -73,7 +73,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onTestStart(test);
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -82,7 +82,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onTestSuccess(test);
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -91,7 +91,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onTestFailure(test, error);
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -100,7 +100,7 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
         try {
             this.coreReporter.onTestPending(test);
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
