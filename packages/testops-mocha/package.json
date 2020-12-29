@@ -22,7 +22,7 @@
     "testops-mocha"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "0.0.1-beta.18",
+    "@katalon/testops-commons": "0.0.1-beta.19",
     "axios": "^0.21.0",
     "uuid": "^8.3.2"
   },
