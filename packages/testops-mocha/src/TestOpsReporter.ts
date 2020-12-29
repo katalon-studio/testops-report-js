@@ -5,6 +5,7 @@ import {
     Status,
     ReportLifecycle,
     TestOpsConfiguration,
+    TestCreator, Execution
 } from '@katalon/testops-commons'
 import { v4 as uuidv4 } from 'uuid';
 import Mocha from 'mocha'
@@ -12,6 +13,7 @@ import Mocha from 'mocha'
 export class TestOpsReporter {
 
     private report: ReportLifecycle;
+    private execution: Execution = TestCreator.execution();
 
     constructor() {
         const configurationParams: TestOpsConfiguration = {
@@ -33,13 +35,13 @@ export class TestOpsReporter {
     }
 
     public onExecutionStart(): void {
-        this.report.startExecution();
+        this.report.startExecution(this.execution);
         const metadata: Metadata = this.createMetadata();
         this.report.writeMetadata(metadata);
     }
 
     public onExecutionFinish(): void {
-        this.report.stopExecution();
+        this.report.stopExecution(this.execution);
         this.report.writeTestResultsReport();
         this.report.writeTestSuitesReport();
         this.report.writeExecutionReport();
@@ -47,7 +49,7 @@ export class TestOpsReporter {
     }
 
     public onSuiteStart(suite: any): void {
-        const suiteName = suite.fullTitle();
+        const suiteName = suite.title;
         if (suiteName) {
             const suiteId: string = uuidv4();
             suite.TO_UUID = suiteId;
@@ -60,8 +62,10 @@ export class TestOpsReporter {
     }
 
     public onSuiteFinish(suite: any): void {
+        const testSuite = { } as TestSuite
         if (suite.TO_UUID) {
-            this.report.stopTestSuite(suite.TO_UUID);
+            testSuite.uuid = suite.TO_UUID;
+            this.report.stopTestSuite(testSuite);
         }
     }
 
@@ -89,11 +93,11 @@ export class TestOpsReporter {
     public createTestResult(test: any): TestResult {
         const suite: any = test.parent;
         const result = { } as TestResult;
-        result.name = test.title;
+        result.name = `${suite.title}.${test.title}`;
         result.uuid = uuidv4();
         result.start = test.TO_START;
         result.duration = test.duration;
-        result.suiteName = suite.fullTitle();
+        result.suiteName = suite.title;
         return result;
     }
 
