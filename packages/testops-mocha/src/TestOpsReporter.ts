@@ -5,6 +5,7 @@ import {
     Status,
     ReportLifecycle,
     TestOpsConfiguration,
+    TestCreator, Execution
 } from '@katalon/testops-commons'
 import { v4 as uuidv4 } from 'uuid';
 import Mocha from 'mocha'
@@ -12,6 +13,7 @@ import Mocha from 'mocha'
 export class TestOpsReporter {
 
     private report: ReportLifecycle;
+    private execution: Execution = TestCreator.execution();
 
     constructor() {
         const configurationParams: TestOpsConfiguration = {
@@ -33,13 +35,13 @@ export class TestOpsReporter {
     }
 
     public onExecutionStart(): void {
-        this.report.startExecution();
+        this.report.startExecution(this.execution);
         const metadata: Metadata = this.createMetadata();
         this.report.writeMetadata(metadata);
     }
 
     public onExecutionFinish(): void {
-        this.report.stopExecution();
+        this.report.stopExecution(this.execution);
         this.report.writeTestResultsReport();
         this.report.writeTestSuitesReport();
         this.report.writeExecutionReport();
@@ -60,8 +62,10 @@ export class TestOpsReporter {
     }
 
     public onSuiteFinish(suite: any): void {
+        const testSuite = { } as TestSuite
         if (suite.TO_UUID) {
-            this.report.stopTestSuite(suite.TO_UUID);
+            testSuite.uuid = suite.TO_UUID;
+            this.report.stopTestSuite(testSuite);
         }
     }
 

@@ -1,4 +1,12 @@
-import {Metadata, ReportLifecycle, Status, TestOpsConfiguration, TestResult, TestSuite} from '@katalon/testops-commons'
+import {
+    Execution,
+    Metadata,
+    ReportLifecycle,
+    Status,
+    TestOpsConfiguration,
+    TestResult,
+    TestSuite
+} from '@katalon/testops-commons'
 import {v4 as uuidv4} from 'uuid';
 
 export class CypressTestOpsReporter {
@@ -10,9 +18,9 @@ export class CypressTestOpsReporter {
 
     public createTestResult(test: any): TestResult {
         const result = { } as TestResult;
-        result.name = test.title[1];
+        result.name = test.title.join('.');
         result.uuid = uuidv4();
-        result.suiteName = test.title[0];
+
         const attempts = test.attempts[0];
         result.duration = attempts.duration;
         try {
@@ -22,10 +30,12 @@ export class CypressTestOpsReporter {
         } catch (ignore) {
             // Ignore errors with start, end
         }
+
         if (test.state === 'passed') {
             result.status = Status.PASSED;
             return result;
         }
+
         if (test.state === 'failed') {
             result.status = Status.FAILED;
             const { error } = attempts;
@@ -33,6 +43,7 @@ export class CypressTestOpsReporter {
             result.stackTrace = error.stack;
             return result;
         }
+
         result.status = Status.SKIPPED;
         return result;
     }
@@ -55,19 +66,25 @@ export class CypressTestOpsReporter {
         if (!results) return;
 
         try {
-            this.onExecutionStart();
+            const execution = this.onExecutionStart(results);
             const runs = results.runs;
+
             runs.forEach((run: any) => {
                 const suite = this.createTestSuite(run.stats);
+                const suiteName = run.spec.name;
+                suite.name = suiteName;
+                suite.parentUuid = execution.uuid;
+
                 run.tests.forEach((test: any) => {
                     const result: TestResult = this.createTestResult(test);
+                    result.suiteName = suiteName;
                     this.report.stopTestCase(result);
-                    suite.name = test.title[0];
                 })
-                this.report.startSuite(suite);
-                this.report.stopTestSuite(suite.uuid);
+
+                this.report.stopTestSuite(suite);
             })
-            this.onExecutionFinish();
+
+            this.onExecutionFinish(execution);
         }catch (err) {
             console.log(err);
         }
@@ -81,14 +98,32 @@ export class CypressTestOpsReporter {
         return metadata
     }
 
-    public onExecutionStart() {
-        this.report.startExecution();
-        const metadata: Metadata = this.createMetadata();
-        this.report.writeMetadata(metadata);
+    public createExecution(results: any): Execution {
+        const execution = { } as Execution;
+        execution.uuid = uuidv4();
+
+        let start = new Date(results.startedTestsAt);
+        let stop = new Date(results.endedTestsAt);
+        execution.start = start.getTime();
+        execution.stop = stop.getTime();
+        execution.duration = results.totalDuration;
+
+        if (results.totalFailed > 0) {
+            execution.status = Status.FAILED;
+            return execution;
+        }
+        execution.status = Status.PASSED;
+        return execution;
     }
 
-    public onExecutionFinish() {
-        this.report.stopExecution();
+    public onExecutionStart(results: any): Execution {
+        const metadata: Metadata = this.createMetadata();
+        this.report.writeMetadata(metadata);
+        return this.createExecution(results);
+    }
+
+    public onExecutionFinish(execution: Execution) {
+        this.report.stopExecution(execution);
         this.report.writeTestResultsReport();
         this.report.writeTestSuitesReport();
         this.report.writeExecutionReport();
