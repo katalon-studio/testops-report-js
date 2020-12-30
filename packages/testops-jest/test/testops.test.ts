@@ -3,7 +3,7 @@ import { describe, expect, it } from "@jest/globals";
 describe("TestOps reports", () => {
   it("should failed", () => {
     expect(false).toBe(true);
-    expect(2).toBe(2);
+    expect(1).toBe(2);
   });
 
   it("should throw exception", () => {
