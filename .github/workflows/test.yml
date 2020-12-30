@@ -31,6 +31,6 @@ jobs:
           npm install
           npm run bootstrap
           npm run link
-          cd $GITHUB_WORKSPACE/packages/testops-mocha
+          cd $GITHUB_WORKSPACE/packages/testops-jest
           npm install
           npm test
