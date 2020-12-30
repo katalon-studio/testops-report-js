@@ -5,7 +5,7 @@ import {
   ReportLifecycle,
   TestOpsConfiguration,
   Metadata,
-  TestResult,
+  TestResult, Execution,
 } from "@katalon/testops-commons";
 
 enum SpecStatus {
@@ -21,13 +21,14 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
   reportLifeCycle: ReportLifecycle;
   private testSuites: TestSuite[] = [];
   private runningTest: TestResult | null = null;
+  private execution: Execution = TestCreator.execution();
 
   constructor(config: TestOpsConfiguration) {
     this.reportLifeCycle = new ReportLifecycle(config);
   }
 
   jasmineStarted(suiteInfo: jasmine.SuiteInfo): void {
-    this.reportLifeCycle.startExecution();
+    this.reportLifeCycle.startExecution(this.execution);
   }
 
   suiteStarted(suite: jasmine.CustomReporterResult): void {
@@ -61,7 +62,7 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
   suiteDone(suite: jasmine.CustomReporterResult): void {
     const currentSuite = this.getCurrentTestSuite();
     if (currentSuite) {
-      this.reportLifeCycle.stopTestSuite(currentSuite.uuid);
+      this.reportLifeCycle.stopTestSuite(currentSuite);
     }
     this.testSuites.pop();
   }
@@ -106,7 +107,7 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
   }
 
   async jasmineDone(runDetails: jasmine.RunDetails): Promise<void> {
-    this.reportLifeCycle.stopExecution();
+    this.reportLifeCycle.stopExecution(this.execution);
     this.reportLifeCycle.writeExecutionReport();
     this.reportLifeCycle.writeTestResultsReport();
     this.reportLifeCycle.writeTestSuitesReport();
