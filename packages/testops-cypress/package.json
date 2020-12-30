@@ -19,7 +19,7 @@
     "testops-cypress"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "0.0.1-beta.21",
+    "@katalon/testops-commons": "1.0.0",
     "axios": "^0.21.0",
     "uuid": "^8.3.2"
   },
