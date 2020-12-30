@@ -14,7 +14,7 @@
   "extends": "@tsconfig/node10/tsconfig.json",
   "include": [
       "./src/**/*",
-      "./test/**/*",
+      "./tests/**/*",
       "index.ts",
       "./types.d.ts"
   ]
