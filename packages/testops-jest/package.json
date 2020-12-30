@@ -1,6 +1,6 @@
 {
   "name": "@katalon/testops-jest",
-  "version": "0.0.1-beta.33",
+  "version": "0.0.1-beta.34",
   "description": "TestOps Jest",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
