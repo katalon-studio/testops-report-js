@@ -1,14 +1,11 @@
 {
-  "name": "@katalon/testops-mocha",
-  "version": "0.0.1-beta.24",
-  "description": "TestOps Mocha",
+  "name": "@katalon/testops-cypress",
+  "version": "0.0.1-beta.1",
+  "description": "TestOps Cypress",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "pretest": "npm run build",
-    "test": "mocha dist --recursive --reporter ./dist/MochaTestOpsReporter.js './tests/sum.test.js'"
+    "build": "tsc"
   },
   "author": "Katalon, LLC. (https://www.katalon.com)",
   "license": "SEE LICENSE IN https://github.com/katalon-studio/utils/blob/master/LICENSE",
@@ -17,18 +14,14 @@
     "url": "https://github.com/katalon-studio/testops-report-js"
   },
   "keywords": [
-    "axios",
     "typescript",
-    "testops-mocha"
+    "jasmine",
+    "testops-cypress"
   ],
   "dependencies": {
     "@katalon/testops-commons": "0.0.1-beta.21",
     "axios": "^0.21.0",
     "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@types/mocha": "^8.2.0",
-    "mocha": "^8.2.1"
   },
   "publishConfig": {
     "access": "public"

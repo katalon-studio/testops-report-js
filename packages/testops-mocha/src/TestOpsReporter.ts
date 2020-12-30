@@ -4,7 +4,6 @@ import {
     Metadata,
     Status,
     ReportLifecycle,
-    TestOpsConfiguration,
     TestCreator, Execution
 } from '@katalon/testops-commons'
 import { v4 as uuidv4 } from 'uuid';
@@ -16,14 +15,7 @@ export class TestOpsReporter {
     private execution: Execution = TestCreator.execution();
 
     constructor() {
-        const configurationParams: TestOpsConfiguration = {
-            username: "lydoan@kms-technology.com",
-            password: "Dtl#@1999",
-            basePath: "http://localhost:8444",
-            projectId: 3,
-            reportFolder: "./testops-result"
-        };
-        this.report = new ReportLifecycle(configurationParams);
+        this.report = new ReportLifecycle();
     }
 
     public createMetadata(): Metadata {

@@ -12,7 +12,7 @@ import {v4 as uuidv4} from 'uuid';
 export class CypressTestOpsReporter {
     private report: ReportLifecycle;
 
-    constructor(config: TestOpsConfiguration) {
+    constructor(config?: TestOpsConfiguration) {
         this.report = new ReportLifecycle(config);
     }
 
