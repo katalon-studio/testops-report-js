@@ -1,6 +1,6 @@
 {
-    "apiKey": "70b8053b-8250-4710-ad48-46db51a4ddcb",
-    "basePath": "http://localhost:8444",
-    "projectId": 3,
-    "reportFolder": "./testops-result"
+    "apiKey": "",
+    "basePath": "",
+    "projectId": null,
+    "reportFolder": ""
 }
