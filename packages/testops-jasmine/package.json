@@ -1,6 +1,6 @@
 {
   "name": "@katalon/testops-jasmine",
-  "version": "0.0.1-beta.24",
+  "version": "0.0.1-beta.27",
   "description": "TestOps Jasmine",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
