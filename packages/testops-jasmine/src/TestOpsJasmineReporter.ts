@@ -23,7 +23,7 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
   private runningTest: TestResult | null = null;
   private execution: Execution = TestCreator.execution();
 
-  constructor(config: TestOpsConfiguration) {
+  constructor(config?: TestOpsConfiguration) {
     this.reportLifeCycle = new ReportLifecycle(config);
   }
 
