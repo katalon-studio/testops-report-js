@@ -33,6 +33,6 @@ describe("TestOps reports", () => {
 
 describe("TestOps result", () => {
   it("should failed", () => {
-    expect(false).toBe(false);
+    expect(true).toBe(false);
   });
 });
