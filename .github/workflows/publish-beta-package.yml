@@ -12,6 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up nodejs
         uses: actions/setup-node@v2
