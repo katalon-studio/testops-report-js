@@ -1,4 +1,4 @@
-name: Test
+name: Build
 
 on:
   pull_request:
@@ -22,15 +22,8 @@ jobs:
           node-version: '12'
 
       - name: Install, build
-        env:
-          TESTOPS_BASE_PATH: ${{ secrets.TESTOPS_BASE_PATH }}
-          TESTOPS_API_KEY: ${{ secrets.TESTOPS_API_KEY }}
-          TESTOPS_PROJECT_ID: ${{ secrets.TESTOPS_PROJECT_ID }}
         run: |
           set -x
           npm install
           npm run bootstrap
-          npm run link
-          cd $GITHUB_WORKSPACE/packages/testops-jest
-          npm install
-          npm test
+          npm run build
