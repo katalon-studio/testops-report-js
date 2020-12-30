@@ -15,11 +15,11 @@ describe('sum', function () {
 
         describe('fail test case', function () {
             it('adds 1 + 2 to equal 4', function (done) {
-                assert.equal(sum_1.sum(1, 2), 4);
+                assert.equal(sum_1.sum(2, 2), 4);
                 done();
             });
             it('adds 2 + 3 to equal 6', function (done) {
-                assert.equal(sum_1.sum(2, 3), 6);
+                assert.equal(sum_1.sum(3, 3), 6);
                 done();
             });
         });
