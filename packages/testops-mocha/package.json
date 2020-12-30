@@ -17,9 +17,9 @@
     "url": "https://github.com/katalon-studio/testops-report-js"
   },
   "keywords": [
-    "axios",
     "typescript",
-    "testops-mocha"
+    "testops-mocha",
+    "mocha"
   ],
   "dependencies": {
     "@katalon/testops-commons": "0.0.1-beta.21",
