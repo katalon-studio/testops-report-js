@@ -6,17 +6,28 @@
 
 #### Environment variables
 
-* `TESTOPS_BASE_PATH` Default value: *https://testops.katalon.io*
+Configurations will be read from environment variables, and properties file in this order.
 
-* `TESTOPS_API_KEY`
+* `basePath` (environment variable: `TESTOPS_SERVERURL`)
 
-* `TESTOPS_PROJECT_ID`
+Katalon TestOps endpoint (default: `https://testops.katalon.io`).
 
-* `TESTOPS_REPORT_FOLDER` Default value: *testops-report*
+* `apiKey` (environment variable: `TESTOPS_APIKEY`)
+
+Your Katalon TestOps API Key.
+
+* `testops.projectId` (environment variable: `TESTOPS_PROJECTID`)
+
+The Katalon TestOps project that will receive the test results.
+
+* `TESTOPS_REPORT_FOLDER`
+
+The local directory where test results will be written to (default: `testops-report`).
 
 #### Configuration file
 
-testops-config.json
+Create a `testops-config.json` file in the top-level directory.
+
 ```
 {
     // Default value: https://testops.katalon.io
