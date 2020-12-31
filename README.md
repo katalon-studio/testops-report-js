@@ -1,17 +1,22 @@
-# Samples
-https://github.com/katalon-studio-samples/testops-report-sample-js
+# Katalon TestOps JavaScript Reporters
 
-# Configuration
-## Environments
-- `TESTOPS_BASE_PATH` Default value: *https://testops.katalon.io*
-  
-- `TESTOPS_API_KEY`
+## Usage
 
-- `TESTOPS_PROJECT_ID`
+### Configuration
 
-- `TESTOPS_REPORT_FOLDER` Default value: *testops-report*
+#### Environment variables
 
-## testops-config.json
+* `TESTOPS_BASE_PATH` Default value: *https://testops.katalon.io*
+
+* `TESTOPS_API_KEY`
+
+* `TESTOPS_PROJECT_ID`
+
+* `TESTOPS_REPORT_FOLDER` Default value: *testops-report*
+
+#### Configuration file
+
+testops-config.json
 ```
 {
     // Default value: https://testops.katalon.io
@@ -24,7 +29,7 @@ https://github.com/katalon-studio-samples/testops-report-sample-js
 
 ```
 
-# Mocha Reporter
+#### Mocha
 - Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/mocha
 - Install dependency
 ```
@@ -35,7 +40,7 @@ npm i @katalon/testops-mocha
 mocha dist --recursive --reporter @katalon/testops-mocha './tests/*.js'
 ```
 
-# Cypress Reporter
+#### Cypress
 - Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/cypress
 - Install dependency
 ```
@@ -58,7 +63,7 @@ cypress.run({
 
 ```
 
-# Jasmine Reporter
+#### Jasmine
 - Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/jasmine
 - Install dependency
 ```
@@ -73,7 +78,7 @@ const reporter = new TestOpsJasmineReporter()
 jasmine.getEnv().addReporter(reporter)
 ```
 
-# Jest Reporter
+#### Jest
 - Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/jest
 - Install dependency
 ```
@@ -85,3 +90,7 @@ module.exports = {
      "reporters": ["default", "@katalon/testops-jest"]
 };
 ```
+
+## Samples
+
+https://github.com/katalon-studio-samples/testops-report-sample-js
