@@ -1,6 +1,6 @@
 {
   "name": "@katalon/testops-cypress",
-  "version": "0.0.1-beta.39",
+  "version": "0.0.1-beta.40",
   "description": "TestOps Cypress",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
