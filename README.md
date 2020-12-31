@@ -41,7 +41,7 @@ mocha dist --recursive --reporter @katalon/testops-mocha './tests/*.js'
 ```
 npm i @katalon/testops-cypress
 ```
-- Add reporters
+- Add reporter
 ```
 const cypress = require('cypress')
 const CypressTestOpsReporter = require('@katalon/testops-cypress');
