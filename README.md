@@ -10,19 +10,19 @@ Configurations will be read from environment variables, and properties file in t
 
 * `TESTOPS_BASE_PATH`
 
-Katalon TestOps endpoint (default: `https://testops.katalon.io`).
+    Katalon TestOps endpoint (default: `https://testops.katalon.io`).
 
 * `TESTOPS_API_KEY`
 
-Your Katalon TestOps API Key.
+    Your Katalon TestOps API Key.
 
 * `TESTOPS_PROJECT_ID`
 
-The Katalon TestOps project that will receive the test results.
+    The Katalon TestOps project that will receive the test results.
 
 * `TESTOPS_REPORT_FOLDER`
 
-The local directory where test results will be written to (default: `testops-report`).
+    The local directory where test results will be written to (default: `testops-report`).
 
 * `PROXY_PROTOCOL`
 
