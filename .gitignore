@@ -8,5 +8,5 @@ testops-result/
 #ignore top level package.json
 /package-lock.json
 *.iml
-packages/testops-mocha/testops-report
+*/testops-report
 lerna-debug.log
