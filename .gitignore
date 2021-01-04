@@ -9,3 +9,4 @@ testops-result/
 /package-lock.json
 *.iml
 packages/testops-mocha/testops-report
+lerna-debug.log

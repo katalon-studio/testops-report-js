@@ -1,6 +1,15 @@
 {
-    "apiKey": "",
-    "basePath": "",
-    "projectId": null,
-    "reportFolder": ""
+    "basePath": "http://localhost:8443",
+    "apiKey": "1ae2f2fa-4e1c-46f3-8be5-ae45508a932f",
+    "projectId": 5,
+    "reportFolder": "",
+    "proxy" : {
+        "protocol": null,
+        "host": null,
+        "port": null,
+        "auth": {
+            "username": null,
+            "password": null
+        }
+    }
 }
