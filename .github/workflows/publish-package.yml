@@ -18,15 +18,6 @@ jobs:
         with:
           node-version: '12'
 
-      - name: Cache npm packages
-        uses: actions/cache@v2
-        with:
-          path:
-            ~/cache
-            !~/cache/exclude
-            **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
-
       - name: Install, build
         run: |
           set -x

@@ -1,14 +1,13 @@
 {
   "name": "@katalon/testops-jest",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "TestOps Jest",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "pretest": "npm run build",
-    "test": "jest dist/test"
+    "pretest": "npm run build"
   },
   "author": "Katalon, LLC. (https://www.katalon.com)",
   "license": "SEE LICENSE IN https://github.com/katalon-studio/utils/blob/master/LICENSE",
@@ -23,7 +22,7 @@
     "testops-jest"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "1.0.1",
+    "@katalon/testops-commons": "1.1.2",
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
