@@ -35,7 +35,16 @@ Create a `testops-config.json` file in the top-level directory.
     "apiKey": "",
     "projectId": "",
     // Default value: testops-report
-    "reportFolder": ""
+    "reportFolder": "",
+    "proxy": {
+        "protocol": "", // Value: http, https
+        "host": "",
+        "port": "",
+        "auth": {
+            "username": "",
+            "password": ""
+        }
+    }
 }
 
 ```
