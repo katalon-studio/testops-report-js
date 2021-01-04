@@ -1,6 +1,6 @@
 {
   "name": "@katalon/testops-cypress",
-  "version": "0.0.1-beta.44",
+  "version": "1.1.0",
   "description": "TestOps Cypress",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "testops-cypress"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "1.0.1",
+    "@katalon/testops-commons": "1.1.2",
     "axios": "^0.21.0",
     "uuid": "^8.3.2"
   },
