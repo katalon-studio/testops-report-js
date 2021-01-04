@@ -7,8 +7,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "pretest": "npm run build",
-    "test": "jasmine ./dist/tests/*.js"
+    "pretest": "npm run build"
   },
   "author": "Katalon, LLC. (https://www.katalon.com)",
   "license": "SEE LICENSE IN https://github.com/katalon-studio/utils/blob/master/LICENSE",
