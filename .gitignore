@@ -8,6 +8,6 @@ testops-result/
 #ignore top level package.json
 /package-lock.json
 *.iml
-*/testops-report
+testops-report/
 lerna-debug.log
-*/testops-config.json
+testops-config.json
