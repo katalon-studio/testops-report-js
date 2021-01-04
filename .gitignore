@@ -10,3 +10,4 @@ testops-result/
 *.iml
 */testops-report
 lerna-debug.log
+*/testops-config.json
