@@ -22,7 +22,7 @@
     "testops-jasmine"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "1.1.0"
+    "@katalon/testops-commons": "1.1.1"
   },
   "devDependencies": {
     "@types/jasmine": "^3.6.2",
