@@ -1,4 +1,5 @@
 import {
+    Error as TestOpReportError,
     TestResult,
     TestSuite,
     Metadata,
@@ -72,8 +73,11 @@ export class TestOpsReporter {
 
     public onTestFailure(test: Mocha.Test, error: Error): void {
         const result: TestResult = this.createTestResult(test);
-        result.errorMessage = error.message;
-        result.stackTrace = error.stack;
+        const testError: TestOpReportError = {};
+        testError.message = error.message;
+        testError.stackTrace = error.stack;
+        result.errors = result.errors || [];
+        result.errors.push(testError);
         this.endTest(result, Status.FAILED);
     }
 
@@ -90,6 +94,7 @@ export class TestOpsReporter {
         result.start = test.TO_START;
         result.duration = test.duration;
         result.suiteName = suite.title;
+        result.errors = [];
         return result;
     }
 

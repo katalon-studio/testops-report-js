@@ -27,3 +27,21 @@ jobs:
           npm install
           npm run bootstrap
           npm run build
+
+      - name: Run Mocha test
+        run: |
+          cd $GITHUB_WORKSPACE/packages/testops-mocha
+          npm install
+          npm test || true
+
+      - name: Run Jest test
+        run: |
+          cd $GITHUB_WORKSPACE/packages/testops-jest
+          npm install
+          npm test || true
+
+      - name: Run Jasmine test
+        run: |
+          cd $GITHUB_WORKSPACE/packages/testops-jasmine
+          npm install
+          npm test || true
