@@ -97,6 +97,7 @@ export class TestOpsJestReporter
         const error: Error = {};
         error.message = "";
         error.stackTrace = stripAnsi(m);
+        testOpsResult.errors = testOpsResult.errors || [];
         testOpsResult.errors.push(error);
       });
     }

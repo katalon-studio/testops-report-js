@@ -18,7 +18,7 @@ export class CypressTestOpsReporter {
     }
 
     public createTestResult(test: any): TestResult {
-        const result = { errors: [] } as TestResult;
+        const result = {} as TestResult;
         result.name = test.title.join('.');
         result.uuid = uuidv4();
 
@@ -43,6 +43,7 @@ export class CypressTestOpsReporter {
             const testError: Error = {};
             testError.message = error.message;
             testError.stackTrace = error.stack;
+            result.errors = result.errors || [];
             result.errors.push(testError);
             return result;
         }
