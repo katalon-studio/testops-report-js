@@ -40,10 +40,9 @@ export class CypressTestOpsReporter {
         if (test.state === 'failed') {
             result.status = Status.FAILED;
             const { error } = attempts;
-            const testError: Error = {
-              message = error.message;
-              stackTrace = error.stack;
-            };
+            const testError: Error = {};
+            testError.message = error.message;
+            testError.stackTrace = error.stack;
             result.errors.push(testError);
             return result;
         }

@@ -1,4 +1,5 @@
 import {
+  Error,
   Status,
   TestCreator,
   ReportLifecycle,
@@ -92,8 +93,12 @@ export class TestOpsJestReporter
     testOpsResult.parentUuid = testSuite.uuid;
     testOpsResult.suiteName = testSuite.name;
     if (failureMessages) {
-      const noColorMessage = failureMessages.map((m) => stripAnsi(m));
-      testOpsResult.stackTrace = noColorMessage.join("\r\n");
+      failureMessages.forEach((m) => {
+        const error: Error = {};
+        error.message = "";
+        error.stackTrace = stripAnsi(m);
+        testOpsResult.errors.push(error);
+      });
     }
     //test result does not have start stop, so we take it from test suite
     testOpsResult.start = testSuite.start;
