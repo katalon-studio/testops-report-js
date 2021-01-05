@@ -1,4 +1,5 @@
 import {
+  Error,
   Status,
   TestSuite,
   TestCreator,
@@ -52,8 +53,11 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
 
     if (failedExpectations && failedExpectations.length > 0) {
       const expectation = failedExpectations[failedExpectations.length - 1];
-      testResult.errorMessage = expectation.message;
-      testResult.stackTrace = expectation.stack;
+      const testError: Error = {
+        message = expectation.message;
+        stackTrace = expectation.stack;
+      };
+      testResult.errors.push(testError);
     }
     this.reportLifeCycle.stopTestCase(testResult);
     this.runningTest = null;

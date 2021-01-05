@@ -1,4 +1,5 @@
 import {
+    Error,
     Execution,
     Metadata,
     ReportLifecycle,
@@ -17,7 +18,7 @@ export class CypressTestOpsReporter {
     }
 
     public createTestResult(test: any): TestResult {
-        const result = { } as TestResult;
+        const result = { errors: [] } as TestResult;
         result.name = test.title.join('.');
         result.uuid = uuidv4();
 
@@ -39,8 +40,11 @@ export class CypressTestOpsReporter {
         if (test.state === 'failed') {
             result.status = Status.FAILED;
             const { error } = attempts;
-            result.errorMessage = error.message;
-            result.stackTrace = error.stack;
+            const testError: Error = {
+              message = error.message;
+              stackTrace = error.stack;
+            };
+            result.errors.push(testError);
             return result;
         }
 
