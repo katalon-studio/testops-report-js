@@ -1,32 +1,32 @@
-#name: Publish npm package
-#
-#on:
-#  push:
-#    branches:
-#      - master
-#
-#jobs:
-#  publish:
-#
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#
-#      - name: Set up nodejs
-#        uses: actions/setup-node@v2
-#        with:
-#          node-version: '12'
-#
-#      - name: Install, build
-#        run: |
-#          set -x
-#          npm install
-#          npm run bootstrap
-#          npm run build
-#
+name: Publish npm package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - name: Install, build
+        run: |
+          set -x
+          npm install
+          npm run bootstrap
+          npm run build
+          
 #      - name: Publish npm package
 #        env:
 #          NPM_USER: ${{ secrets.NPM_USER }}
