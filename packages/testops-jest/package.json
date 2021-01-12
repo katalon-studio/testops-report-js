@@ -23,12 +23,13 @@
     "testops-jest"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "1.2.2",
+    "@katalon/testops-commons": "1.2.3",
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
     "@jest/reporters": "^26.6.2",
     "@jest/test-result": "^26.6.2",
+    "@types/jest": "^26.0.20",
     "jest": "^26.6.3",
     "jest-circus": "^26.6.3"
   },
