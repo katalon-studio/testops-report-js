@@ -1,6 +1,6 @@
 {
   "name": "@katalon/testops-mocha",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "TestOps Mocha",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,8 +22,7 @@
     "mocha"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "1.2.2",
-    "axios": "^0.21.0",
+    "@katalon/testops-commons": "1.2.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
