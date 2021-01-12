@@ -8,7 +8,7 @@
 
 Configurations will be read from environment variables, and properties file in this order.
 
-* `TESTOPS_BASE_PATH`
+* `TESTOPS_SERVER_URL`
 
     Katalon TestOps endpoint (default: `https://testops.katalon.io`).
 
@@ -24,15 +24,15 @@ Configurations will be read from environment variables, and properties file in t
 
     The local directory where test results will be written to (default: `testops-report`).
 
-* `PROXY_PROTOCOL`
+* `TESTOPS_PROXY_SERVER_TYPE`
 
-* `PROXY_HOST`
+* `TESTOPS_PROXY_HOST`
 
-* `PROXY_PORT`
+* `TESTOPS_PROXY_PORT`
 
-* `PROXY_USERNAME`
+* `TESTOPS_PROXY_USERNAME`
 
-* `PROXY_PASSWORD`
+* `TESTOPS_PROXY_PASSWORD`
 
 
 #### Configuration file

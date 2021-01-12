@@ -33,7 +33,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onExecutionStart(): void {
-        console.log('onExecutionStart')
         try {
             this.coreReporter.onExecutionStart();
         } catch (err) {
@@ -42,7 +41,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onExecutionFinish(): void {
-        console.log('onExecutionFinish')
         try {
             this.coreReporter.onExecutionFinish();
         } catch (err) {
@@ -51,7 +49,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onSuiteStart(suite: Mocha.Suite): void {
-        console.log('onSuiteStart')
         try {
             this.coreReporter.onSuiteStart(suite);
         } catch (err) {
@@ -60,7 +57,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onSuiteFinish(suite: Mocha.Suite): void {
-        console.log('onSuiteFinish')
         try {
             this.coreReporter.onSuiteFinish(suite);
         } catch (err) {
@@ -69,7 +65,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onTestStart(test: Mocha.Test): void {
-        console.log('onTestStart')
         try {
             this.coreReporter.onTestStart(test);
         } catch (err) {
@@ -78,7 +73,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onTestSuccess(test: Mocha.Test): void {
-        console.log('onTestSuccess')
         try {
             this.coreReporter.onTestSuccess(test);
         } catch (err) {
@@ -87,7 +81,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onTestFailure(test: Mocha.Test, error: Error): void {
-        console.log('onTestFailure')
         try {
             this.coreReporter.onTestFailure(test, error);
         } catch (err) {
@@ -96,7 +89,6 @@ export = class MochaTestOpsReporter extends Mocha.reporters.Base {
     }
 
     private onTestPending(test: Mocha.Test): void {
-        console.log('onTestPending')
         try {
             this.coreReporter.onTestPending(test);
         } catch (err) {
