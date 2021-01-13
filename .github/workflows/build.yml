@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '12'
 
-      - name: Install, build
+      - name: Build
         run: |
           set -x
           npm install
