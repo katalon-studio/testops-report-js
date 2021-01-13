@@ -5,6 +5,9 @@ on:
     branches:
       - master
       - release
+  branches:
+    - master
+    - release
 
 jobs:
   publish:
