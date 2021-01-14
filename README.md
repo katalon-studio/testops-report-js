@@ -61,7 +61,7 @@ Create a `testops-config.json` file in the top-level directory.
 ```
 
 #### Mocha
-- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/mocha
+- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js
 - Install dependency
 ```
 npm i @katalon/testops-mocha
@@ -72,7 +72,7 @@ mocha dist --recursive --reporter @katalon/testops-mocha './tests/*.js'
 ```
 
 #### Cypress
-- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/cypress
+- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js
 - Install dependency
 ```
 npm i @katalon/testops-cypress
@@ -95,7 +95,7 @@ cypress.run({
 ```
 
 #### Jasmine
-- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/jasmine
+- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js
 - Install dependency
 ```
 npm i @katalon/testops-jasmine
@@ -110,7 +110,7 @@ jasmine.getEnv().addReporter(reporter)
 ```
 
 #### Jest
-- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js/jest
+- Sample: https://github.com/katalon-studio-samples/testops-report-sample-js
 - Install dependency
 ```
 npm i @katalon/testops-jest
