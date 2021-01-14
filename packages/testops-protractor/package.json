@@ -1,0 +1,42 @@
+{
+  "name": "@katalon/testops-protractor",
+  "version": "1.0.0",
+  "description": "TestOps Protractor",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "pretest": "npm run build",
+    "test": "protractor conf.js"
+  },
+  "author": "Katalon, LLC. (https://www.katalon.com)",
+  "license": "SEE LICENSE IN https://github.com/katalon-studio/utils/blob/master/LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katalon-studio/testops-report-js"
+  },
+  "keywords": [
+    "typescript",
+    "protractor",
+    "testops-protractor"
+  ],
+  "dependencies": {
+    "@katalon/testops-commons": "1.2.2",
+    "protractor": "^7.0.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node10": "^1.0.7",
+    "@types/glob": "^7.1.3",
+    "@types/jasmine": "^3.6.2",
+    "@types/node": "^14.14.14",
+    "@types/uuid": "^8.3.0",
+    "jasmine": "^3.6.3",
+    "lerna": "^3.22.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
