@@ -58,5 +58,5 @@ jobs:
         working-directory: packages/testops-protractor
         run: |
           npm install
-          npm update-webdriver
+          npm run update-webdriver
           npm test -- --headless || true
