@@ -20,6 +20,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install dependencies
+        run: apt-get install xvfb
+
       - name: Set up nodejs
         uses: actions/setup-node@v2
         with:
