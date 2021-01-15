@@ -22,27 +22,24 @@
   "keywords": [
     "typescript",
     "protractor",
-    "testops-protractor"
+    "testops-protractor",
+    "jasmine",
+    "testops-jasmine",
+    "mocha",
+    "testops-mocha"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "^1.2.4",
     "@katalon/testops-jasmine": "^1.2.1",
     "@katalon/testops-mocha": "^1.2.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^8.2.1",
     "protractor": "^7.0.0"
   },
   "devDependencies": {
-    "@tsconfig/node10": "^1.0.7",
     "@types/chai": "^4.2.14",
-    "@types/glob": "^7.1.3",
     "@types/jasmine": "^3.6.2",
-    "@types/node": "^14.14.14",
-    "@types/uuid": "^8.3.0",
     "jasmine": "^3.6.3",
-    "lerna": "^3.22.1",
-    "ts-node": "^9.1.1",
+    "mocha": "^8.2.1",
     "typescript": "^4.1.3"
   },
   "publishConfig": {
