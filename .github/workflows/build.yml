@@ -28,27 +28,29 @@ jobs:
           npm run bootstrap
           npm run build
 
-#       - name: Run Mocha test
-#         run: |
-#           cd $GITHUB_WORKSPACE/packages/testops-mocha
-#           pwd
-#           ls -la
-#           npm install
-#           npm test || true
+      - name: Run Mocha test
+        if: always()
+        working-directory: packages/testops-mocha
+        run: |
+          npm install
+          npm test || true
 
       - name: Run Jest test
+        if: always()
         working-directory: packages/testops-jest
         run: |
           npm install
           npm test || true
 
       - name: Run Jasmine test
+        if: always()
         working-directory: packages/testops-jasmine
         run: |
           npm install
           npm test || true
 
       - name: Run Protractor test
+        if: always()
         working-directory: packages/testops-protractor
         run: |
           npm install
