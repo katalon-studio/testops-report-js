@@ -37,21 +37,22 @@ jobs:
 
       - name: Run Mocha test
         if: always()
-        working-directory: packages/testops-mocha
+        working-directory: ./packages/testops-mocha
         run: |
           npm install
           npm test || true
 
       - name: Run Jest test
         if: always()
-        working-directory: packages/testops-jest
+        working-directory: ./packages/testops-jest
         run: |
           npm install
           npm test || true
 
+
       - name: Run Jasmine test
         if: always()
-        working-directory: packages/testops-jasmine
+        working-directory: ./packages/testops-jasmine
         run: |
           npm install
           npm test || true
