@@ -31,6 +31,8 @@ jobs:
       - name: Run Mocha test
         working-directory: packages/testops-mocha
         run: |
+          pwd
+          ls -la
           npm install
           npm test || true
 
