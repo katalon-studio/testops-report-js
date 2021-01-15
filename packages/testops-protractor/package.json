@@ -11,7 +11,8 @@
     "test": "protractor",
     "pretest:mocha": "npm run build",
     "test:mocha": "protractor protractor.mocha.conf.js",
-    "start-webdriver": "webdriver-manager start"
+    "start-webdriver": "webdriver-manager start",
+    "update-webdriver": "webdriver-manager update"
   },
   "author": "Katalon, LLC. (https://www.katalon.com)",
   "license": "SEE LICENSE IN https://github.com/katalon-studio/utils/blob/master/LICENSE",
