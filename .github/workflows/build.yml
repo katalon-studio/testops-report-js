@@ -59,4 +59,4 @@ jobs:
         run: |
           npm install
           npm run update-webdriver
-          npm test -- --headless || true
+          npm test || true
