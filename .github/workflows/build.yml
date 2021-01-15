@@ -32,19 +32,25 @@ jobs:
           npm run build
 
       - name: Run Mocha test
+        working-directory: packages/testops-mocha
         run: |
-          cd $GITHUB_WORKSPACE/packages/testops-mocha
           npm install
           npm test || true
 
       - name: Run Jest test
+        working-directory: packages/testops-jest
         run: |
-          cd $GITHUB_WORKSPACE/packages/testops-jest
           npm install
           npm test || true
 
       - name: Run Jasmine test
+        working-directory: packages/testops-jasmine
         run: |
-          cd $GITHUB_WORKSPACE/packages/testops-jasmine
+          npm install
+          npm test || true
+
+      - name: Run Protractor test
+        working-directory: packages/testops-protractor
+        run: |
           npm install
           npm test || true
