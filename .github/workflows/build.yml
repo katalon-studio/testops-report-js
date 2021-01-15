@@ -29,8 +29,8 @@ jobs:
           npm run build
 
       - name: Run Mocha test
-        working-directory: packages/testops-mocha
         run: |
+          cd $GITHUB_WORKSPACE/packages/testops-mocha
           pwd
           ls -la
           npm install
