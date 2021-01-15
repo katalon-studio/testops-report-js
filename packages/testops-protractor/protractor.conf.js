@@ -1,4 +1,4 @@
-// const TestOpsJasmineReporter = require('@katalon/testops-jasmine');
+const TestOpsJasmineReporter = require('@katalon/testops-jasmine');
 
 exports.config = {
   framework: "jasmine",
@@ -6,13 +6,11 @@ exports.config = {
   specs: ["./dist/tests/jasmine/*.js"],
   plugins: [
     {
-      path: "./dist/src/TestOpsProtractorPlugin.js",
-      framework: 'jasmine',
+      path: "./dist",
     },
   ],
   onPrepare: () => {
-    // const reporter = new TestOpsJasmineReporter();
-    // jasmine.getEnv().addReporter(reporter);
+    const reporter = new TestOpsJasmineReporter();
+    jasmine.getEnv().addReporter(reporter);
   },
-  // onComplete: () => new Promise(() => {}),
 };
