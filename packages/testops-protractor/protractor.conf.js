@@ -3,6 +3,11 @@ const TestOpsJasmineReporter = require('@katalon/testops-jasmine');
 exports.config = {
   framework: "jasmine",
   specs: ["./dist/tests/jasmine/*.js"],
+  capabilities: {
+    browserName: "chrome",
+    useAutomationExtension: false,
+    args: ["--disable-dev-shm-usage"],
+  },
   plugins: [
     {
       path: "./dist",
