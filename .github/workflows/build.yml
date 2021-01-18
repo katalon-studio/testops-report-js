@@ -5,6 +5,10 @@ on:
     branches:
       - master
       - release
+  push:
+    branches:
+      - master
+      - release
 
 jobs:
   publish:
@@ -16,12 +20,15 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install dependencies
+        run: sudo apt-get install xvfb
+
       - name: Set up nodejs
         uses: actions/setup-node@v2
         with:
           node-version: '12'
 
-      - name: Install, build
+      - name: Build
         run: |
           set -x
           npm install
@@ -29,19 +36,31 @@ jobs:
           npm run build
 
       - name: Run Mocha test
+        if: always()
+        working-directory: ./packages/testops-mocha
         run: |
-          cd $GITHUB_WORKSPACE/packages/testops-mocha
           npm install
           npm test || true
 
       - name: Run Jest test
+        if: always()
+        working-directory: ./packages/testops-jest
         run: |
-          cd $GITHUB_WORKSPACE/packages/testops-jest
           npm install
           npm test || true
 
+
       - name: Run Jasmine test
+        if: always()
+        working-directory: ./packages/testops-jasmine
         run: |
-          cd $GITHUB_WORKSPACE/packages/testops-jasmine
           npm install
+          npm test || true
+
+      - name: Run Protractor test
+        if: always()
+        working-directory: packages/testops-protractor
+        run: |
+          npm install
+          npm run update-webdriver
           npm test || true
