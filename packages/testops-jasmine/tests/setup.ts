@@ -4,13 +4,8 @@ import { TestOpsJasmineReporter } from "../src/TestOpsJasmineReporter";
 const reporter = new TestOpsJasmineReporter();
 
 jasmine.getEnv().addReporter(reporter);
+(global as any).testOpsJasmine = reporter.getRuntime();
 
 declare global {
-  namespace NodeJS {
-    interface Global {
-      testOpsJasmine: TestOpsJasmine;
-    }
-  }
+  export const testOpsJasmine: TestOpsJasmine;
 }
-
-global.testOpsJasmine = reporter.getRuntime();
