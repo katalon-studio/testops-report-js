@@ -1,3 +1,4 @@
+import { TestOpsJasmine } from './TestOpsJasmine';
 import {
   Error,
   Status,
@@ -69,6 +70,10 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
       this.reportLifeCycle.stopTestSuite(currentSuite);
     }
     this.testSuites.pop();
+  }
+
+  getRuntime() {
+    return new TestOpsJasmine(this.reportLifeCycle);
   }
 
   private convertToTestOpsStatus(specStatus?: string): Status {
