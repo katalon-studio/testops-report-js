@@ -73,7 +73,14 @@ export class TestOpsJasmineReporter implements jasmine.CustomReporter {
   }
 
   getRuntime() {
-    return new TestOpsJasmine(this.reportLifeCycle);
+    return new TestOpsJasmine(this.reportLifeCycle, this);
+  }
+
+  addAttachment(path: string) {
+    if (!this.runningTest) return;
+    const { attachments = [] } = this.runningTest;
+    attachments.push({ path });
+    this.runningTest.attachments = attachments;
   }
 
   private convertToTestOpsStatus(specStatus?: string): Status {
