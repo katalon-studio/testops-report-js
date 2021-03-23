@@ -23,7 +23,7 @@
     "testops-jest"
   ],
   "dependencies": {
-    "@katalon/testops-commons": "1.2.4",
+    "@katalon/testops-commons": "1.2.5",
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
