@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  ## PUBLISH ##
   publish:
     name: Publish
     runs-on: ubuntu-latest
