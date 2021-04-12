@@ -47,11 +47,8 @@ jobs:
         with:
           node-version: '12'
 
-      - name: Install dev package
-        run : |
-          npm ci
-
       - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run release
+        run: |
+        set -x
+        git config --local user.name ${{ secrets.GITHUB_TOKEN }}
+        npm run release
