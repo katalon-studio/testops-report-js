@@ -51,4 +51,6 @@ jobs:
         run: |
           set -x
           git config --local user.name ${{ secrets.GITHUB_TOKEN }}
+          npm install -g npm-cli-login
+          npm-cli-login
           npm run release
