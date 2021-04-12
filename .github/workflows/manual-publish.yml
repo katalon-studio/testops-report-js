@@ -49,6 +49,6 @@ jobs:
 
       - name: Release
         run: |
-        set -x
-        git config --local user.name ${{ secrets.GITHUB_TOKEN }}
-        npm run release
+          set -x
+          git config --local user.name ${{ secrets.GITHUB_TOKEN }}
+          npm run release
