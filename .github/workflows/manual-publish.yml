@@ -1,0 +1,54 @@
+name: Manual Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ## PUBLISH ##
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - name: Publish npm package
+        env:
+          NPM_USER: ${{ secrets.NPM_USER }}
+          NPM_PASS: ${{ secrets.NPM_PASS }}
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+        run: |
+          npm install -g npm-cli-login
+          npm-cli-login
+          npm intall
+          npm publish --access publish
+
+  ## RELEASE ##
+  release:
+    name: Release
+
+    needs: publish
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - name: Install dev package
+        run : |
+          npm ci
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run release
