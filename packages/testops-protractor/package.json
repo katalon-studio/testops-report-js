@@ -1,6 +1,6 @@
 {
   "name": "@katalon/testops-protractor",
-  "version": "1.2.3-alpha.0",
+  "version": "1.2.3-alpha.1",
   "description": "TestOps Protractor",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -30,8 +30,8 @@
     "testops-mocha"
   ],
   "dependencies": {
-    "@katalon/testops-jasmine": "^1.2.3-alpha.0",
-    "@katalon/testops-mocha": "^1.2.3-alpha.0",
+    "@katalon/testops-jasmine": "^1.2.3-alpha.1",
+    "@katalon/testops-mocha": "^1.2.3-alpha.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "protractor": "^7.0.0"
