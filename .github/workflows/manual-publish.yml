@@ -41,9 +41,9 @@ jobs:
 
       - name: Pushlish npm package
         env:
-          NPM_USER: ${{ secrets.NPM_USER }}
-          NPM_PASS: ${{ secrets.NPM_PASS }}
-          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+          NPM_USER: phonghmh
+          NPM_PASS: Hoaiphong2511
+          NPM_EMAIL: phong.hoang@katalon.com
         run: |
           set -x
           echo "username: $NPM_USER"
