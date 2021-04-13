@@ -44,6 +44,7 @@ jobs:
           NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
         run: |
           set -x
+          echo $NPM_USER $NPM_PASS $NPM_EMAIl
           npm install -g npm-cli-login
           npm-cli-login
           npm run release
