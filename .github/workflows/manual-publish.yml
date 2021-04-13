@@ -39,15 +39,11 @@ jobs:
 
       - name: Pushlish npm package
         env:
-          NPM_USER: phonghmh
-          NPM_PASS: Hoaiphong2511
-          NPM_EMAIL: phong.hoang@katalon.com
+          NPM_USER: ${{ secrets.NPM_USER }}
+          NPM_PASS: ${{ secrets.NPM_PASS }}
+          NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
         run: |
           set -x
-          echo "username: $NPM_USER"
-          echo "password: $NPM_PASS"
-          echo "email: $NPM_EMAIL"
           npm install -g npm-cli-login
           npm-cli-login
-          npm install
           npm run release
