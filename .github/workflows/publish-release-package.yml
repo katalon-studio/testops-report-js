@@ -34,4 +34,4 @@ jobs:
           set -x
           npm install -g npm-cli-login
           npm-cli-login
-          npm run release
+          npm run release:beta
