@@ -48,7 +48,7 @@ jobs:
           set -x
           echo "username: " $NPM_USER
           echo "password: " $NPM_PASS
-          echo "email: " $NPM_EMAIl
+          echo "email: " $NPM_EMAIL
           git config --local user.name ${{ secrets.GITHUB_TOKEN }}
           npm install -g npm-cli-login
           npm-cli-login
