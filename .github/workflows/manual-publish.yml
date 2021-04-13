@@ -10,8 +10,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up nodejs
         uses: actions/setup-node@v2
@@ -28,14 +26,11 @@ jobs:
   ## RELEASE ##
   release:
     name: Release
-
     needs: publish
-
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Set up nodejs
         uses: actions/setup-node@v2
@@ -49,7 +44,6 @@ jobs:
           NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
         run: |
           set -x
-          git config --local user.name ${{ secrets.GITHUB_TOKEN }}
           npm install -g npm-cli-login
           npm-cli-login
           npm run release
