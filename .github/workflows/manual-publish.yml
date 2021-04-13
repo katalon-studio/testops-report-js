@@ -31,8 +31,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up nodejs
         uses: actions/setup-node@v2
@@ -49,7 +47,7 @@ jobs:
           echo "username: $NPM_USER"
           echo "password: $NPM_PASS"
           echo "email: $NPM_EMAIL"
-          git config --local user.name ${{ secrets.GITHUB_TOKEN }}
           npm install -g npm-cli-login
           npm-cli-login
+          npm install
           npm run release
