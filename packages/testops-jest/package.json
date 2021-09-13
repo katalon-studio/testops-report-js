@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "@katalon/testops-commons": "1.2.5",
-    "strip-ansi": "^6.0.0"
+    "strip-ansi": "^7.0.1"
   },
   "devDependencies": {
     "@jest/reporters": "^26.6.2",
