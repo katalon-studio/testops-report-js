@@ -27,7 +27,7 @@
     "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
-    "@jest/reporters": "^26.6.2",
+    "@jest/reporters": "^27.5.1",
     "@jest/test-result": "^26.6.2",
     "@types/jest": "^26.0.20",
     "jest": "^26.6.3",
