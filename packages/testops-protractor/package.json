@@ -39,7 +39,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/jasmine": "^3.6.2",
-    "jasmine": "^3.6.3",
+    "jasmine": "^4.1.0",
     "mocha": "^8.2.1",
     "typescript": "^4.1.3"
   },
