@@ -25,8 +25,8 @@
     "@katalon/testops-commons": "1.2.5"
   },
   "devDependencies": {
-    "@types/jasmine": "^3.6.2",
-    "jasmine": "^3.6.3"
+    "@types/jasmine": "^4.3.0",
+    "jasmine": "^4.3.0"
   },
   "publishConfig": {
     "access": "public"
