@@ -15,7 +15,7 @@
     "@types/glob": "^7.1.3",
     "@types/uuid": "^8.3.0",
     "@types/node": "^14.14.14",
-    "lerna": "^3.22.1",
+    "lerna": "^5.5.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   }
