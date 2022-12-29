@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "@katalon/testops-commons": "1.2.5",
-    "axios": "^0.21.0",
+    "axios": "^1.2.2",
     "uuid": "^8.3.2"
   },
   "publishConfig": {
