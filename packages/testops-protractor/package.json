@@ -33,7 +33,7 @@
     "@katalon/testops-jasmine": "^1.2.2",
     "@katalon/testops-mocha": "^1.2.2",
     "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
+    "chai-as-promised": "^7.1.2",
     "protractor": "^7.0.0"
   },
   "devDependencies": {
